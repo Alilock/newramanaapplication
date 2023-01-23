@@ -1,0 +1,52 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="11.1.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.12" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.12" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.12">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.12">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Npgsql" Version="6.0.8" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.8" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL.Design" Version="1.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Domain\Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="AppCode\Extensions\" />
+    <Folder Include="CQRS\BrandModule\" />
+    <Folder Include="Validators\" />
+    <Folder Include="wwwroot\" />
+    <Folder Include="wwwroot\uploads\" />
+    <Folder Include="wwwroot\uploads\images\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Npgsql" />
+    <None Remove="Npgsql.EntityFrameworkCore.PostgreSQL" />
+    <None Remove="Npgsql.EntityFrameworkCore.PostgreSQL.Design" />
+    <None Remove="Microsoft.AspNetCore.Http" />
+    <None Remove="wwwroot\" />
+    <None Remove="wwwroot\uploads\" />
+    <None Remove="wwwroot\uploads\images\" />
+  </ItemGroup>
+</Project>

@@ -16,7 +16,6 @@ namespace Api.Controllers
         }
 
         [HttpGet]
-        [Route("GetAll")]
         public async Task<IActionResult> GetAll([FromRoute]GenderAllQuery query)
         {
             var response = await mediator.Send(query);

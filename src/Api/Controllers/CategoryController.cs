@@ -17,7 +17,7 @@ namespace Api.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(CategoryCreateCommand command)
+        public async Task<IActionResult> Create([FromForm] CategoryCreateCommand command)
         {
             var response = await mediator.Send(command);
             return StatusCode(response.StatusCode, response);

@@ -16,13 +16,13 @@ namespace Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll([FromRoute]GenderAllQuery query)
+        public async Task<IActionResult> Get([FromRoute]GenderAllQuery query)
         {
             var response = await mediator.Send(query);
             return StatusCode(response.StatusCode, response);
         }
         [HttpGet("{Id}")]
-        public async Task<IActionResult> Get([FromRoute]GenderSingleQuery query)
+        public async Task<IActionResult> GetById([FromRoute]GenderSingleQuery query)
         {
             var response = await mediator.Send(query);
             return StatusCode(response.StatusCode, response);

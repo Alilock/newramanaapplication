@@ -10,7 +10,7 @@ namespace Domain.Entities
         public virtual Category? Parent { get; set; }
         public virtual ICollection<Category>? Children { get; set; }
         public string Name { get; set; } = null!;
-        public string? ImageParh { get; set; }
+        public string? ImagePath { get; set; }
         [NotMapped]
         public IFormFile? ImageFile { get; set; }
         [NotMapped]

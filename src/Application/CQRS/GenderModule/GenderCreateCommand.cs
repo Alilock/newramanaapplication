@@ -4,16 +4,10 @@ using Domain.Entities;
 using Domain.Responses;
 using MediatR;
 using Microsoft.AspNetCore.Http;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.CQRS.GenderModule
 {
     public class GenderCreateCommand :IRequest<Response<Gender>>
-
     {
         public string Name { get; set; } = null!;
         public string? ImageaPath { get; set; }
@@ -41,7 +35,6 @@ namespace Application.CQRS.GenderModule
                 await db.SaveChangesAsync(cancellationToken);
 
                 return new Response<Gender> { StatusCode = 201, Message = "created", Data = gender };
-
             }
         }
     }

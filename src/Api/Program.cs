@@ -6,7 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddCors(c => c.AddPolicy("policy", c =>
 {
-    c.WithOrigins("http://localhost:3000");
+    c.WithOrigins("httw");
     c.AllowAnyMethod();
     c.AllowAnyHeader();
 }));

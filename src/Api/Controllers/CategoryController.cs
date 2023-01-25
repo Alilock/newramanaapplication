@@ -23,14 +23,14 @@ namespace Api.Controllers
             return StatusCode(response.StatusCode, response);
         }
         [HttpGet]
-        public async Task<IActionResult> Get(CategoryAllQuery query)
+        public async Task<IActionResult> Get([FromRoute]CategoryAllQuery query)
         {
             var response = await mediator.Send(query);
             return StatusCode(response.StatusCode, response);
         }
 
         [HttpGet("{Id}")]
-        public async Task<IActionResult> GetById (CategorySingleQuery query)
+        public async Task<IActionResult> GetById ([FromRoute]CategorySingleQuery query)
         {
             var response = await mediator.Send(query);
             return StatusCode(response.StatusCode, response);

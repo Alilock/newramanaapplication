@@ -6,7 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddCors(c => c.AddPolicy("policy", c =>
 {
-    c.WithOrigins("httw");
+    c.AllowAnyOrigin();
     c.AllowAnyMethod();
     c.AllowAnyHeader();
 }));

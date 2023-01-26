@@ -14,7 +14,7 @@ namespace Application.CQRS.CategoryModule
 
         public string Name { get; set; } = null!;
         public IFormFile Image { get; set; } = null!;
-		public int? ParentId { get; set; }
+        public int? ParentId { get; set; }
         public class CategoryCreateCommandHandler : IRequestHandler<CategoryCreateCommand, Response<Category>>
         {
             private readonly AppDbContext db;
@@ -30,10 +30,12 @@ namespace Application.CQRS.CategoryModule
             {
                 var category = new Category
                 {
-                    ParentId = request.ParentId,
                     Name = request.Name,
                 };
-
+                if (request.ParentId!=null)
+                {
+                    category.ParentId = request.ParentId;
+                }
                 category.ImagePath = request.Image.GetRandomImagePath("category");
                 await env.SaveAsync(request.Image, category.ImagePath, cancellationToken);
 

@@ -20,8 +20,7 @@ namespace Application.CQRS.CategoryModule
 
             public async Task<Response<ICollection<Category>>> Handle(CategoryAllQuery request, CancellationToken cancellationToken)
             {
-                var data = await db.Categories
-               .Include(c => c.Parent)
+                var data = await db.Categories.Include(c=>c.Parent)
                .Where(m => m.DeletedDate == null)
                .ToListAsync(cancellationToken);
 

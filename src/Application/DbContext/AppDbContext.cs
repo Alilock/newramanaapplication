@@ -15,8 +15,8 @@ namespace Application.DbContext
        public DbSet<Product> Products =>Set<Product>();
        public DbSet<Color> Colors => Set<Color>();
        public DbSet<Material> Materials => Set<Material>();
+        public DbSet<ProductImage> ProductImages => Set<ProductImage>();
        public DbSet<ProductColors> ProductColors => Set<ProductColors>();
-       public DbSet<ProductImage> ProductImages => Set<ProductImage>();
        public DbSet<ProductMaterials> ProductMaterials => Set<ProductMaterials>();
        public DbSet<Gender> Genders => Set<Gender>();
         

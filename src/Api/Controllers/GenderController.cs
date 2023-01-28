@@ -31,6 +31,7 @@ namespace Api.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromForm]GenderCreateCommand command)
         {
+
             var response = await mediator.Send(command);
             return StatusCode(response.StatusCode,response);
         }

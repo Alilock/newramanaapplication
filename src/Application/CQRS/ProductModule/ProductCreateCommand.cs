@@ -41,6 +41,7 @@ namespace Application.CQRS.ProductModule
                 product.CategoryId = request.CategoryId;
                 product.GenderId = request.GenderId;
                 product.Price = request.Price;
+                product.StockKeepingUnit = request.StockKeepingUnit;
                 if (request.MaterialIds != null)
                 {
                     product.Materials = new List<ProductMaterials>();

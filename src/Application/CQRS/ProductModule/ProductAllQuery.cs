@@ -1,5 +1,4 @@
-﻿using System;
-using Application.DbContext;
+﻿using Application.DbContext;
 using Domain.Entities;
 using Domain.Responses;
 using MediatR;
@@ -7,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Application.CQRS.ProductModule
 {
-	public class ProductAllQuery :IRequest<Response<ICollection<Product>>>
+    public class ProductAllQuery :IRequest<Response<ICollection<Product>>>
 	{
         public class ProductAllQueryHandler : IRequestHandler<ProductAllQuery, Response<ICollection<Product>>>
         {

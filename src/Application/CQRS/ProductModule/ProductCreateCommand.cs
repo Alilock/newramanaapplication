@@ -40,15 +40,15 @@ namespace Application.CQRS.ProductModule
                 product.Description = request.Description;
                 product.CategoryId = request.CategoryId;
                 product.GenderId = request.GenderId;
-
+                product.Price = request.Price;
                 if (request.MaterialIds != null)
                 {
                     product.Materials = new List<ProductMaterials>();
-                    foreach (var item in product.Materials)
+                    foreach (var item in request.MaterialIds)
                     {
                         product.Materials.Add(new()
                         {
-                            MaterialId = item.MaterialId,
+                            MaterialId = item,
                             Product = product
                         });
                     }
@@ -56,27 +56,27 @@ namespace Application.CQRS.ProductModule
                 if (request.ColorIds != null)
                 {
                     product.Colors = new List<ProductColors>();
-                    foreach (var item in product.Colors)
+                    foreach (var item in request.ColorIds)
                     {
                         product.Colors.Add(new()
                         {
-                            ColorId = item.ColorId,
+                            ColorId = item,
                             Product = product
                         });
                     }
                 }
 
+                    List<ProductImage> images = new List<ProductImage>();
                 if (request.Images!=null)
                 {
-                    List<ProductImage> images = new List<ProductImage>();
                     foreach (var image in request.Images)
                     {
-                        string path = image.GetRandomImagePath("category");
+                        string path = image.GetRandomImagePath("product");
                         await env.SaveAsync(image, path, cancellationToken);
-                        images.Add(new() { Path = path, ProductId = product.Id });
+                        images.Add(new() { Path = path, ProductId = product.Id});
                     }
                 }
-
+                product.Images = images;
                 await db.AddAsync(product, cancellationToken);
                 await db.SaveChangesAsync(cancellationToken);
 

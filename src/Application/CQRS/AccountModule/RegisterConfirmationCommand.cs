@@ -28,10 +28,8 @@ namespace Application.CQRS.AccountModule
                 ResponseUser response = new();
                 response.StatusCode = 200;
                 response.Message = request.Email;
-                    return response;
+                return response;
             }
-
-          
         }
     }
 }

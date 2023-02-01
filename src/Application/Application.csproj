@@ -40,6 +40,7 @@
     <Folder Include="wwwroot\uploads\images\" />
     <Folder Include="CQRS\CategoryModule\" />
     <Folder Include="CQRS\ProductModule\" />
+    <Folder Include="CQRS\MaterialModule\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -52,5 +53,6 @@
     <None Remove="wwwroot\uploads\images\" />
     <None Remove="CQRS\CategoryModule\" />
     <None Remove="CQRS\ProductModule\" />
+    <None Remove="CQRS\MaterialModule\" />
   </ItemGroup>
 </Project>

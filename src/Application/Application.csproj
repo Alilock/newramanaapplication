@@ -41,6 +41,7 @@
     <Folder Include="CQRS\CategoryModule\" />
     <Folder Include="CQRS\ProductModule\" />
     <Folder Include="CQRS\MaterialModule\" />
+    <Folder Include="CQRS\ColorAllQuery\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -54,5 +55,6 @@
     <None Remove="CQRS\CategoryModule\" />
     <None Remove="CQRS\ProductModule\" />
     <None Remove="CQRS\MaterialModule\" />
+    <None Remove="CQRS\ColorAllQuery\" />
   </ItemGroup>
 </Project>

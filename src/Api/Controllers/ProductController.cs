@@ -20,8 +20,8 @@ namespace Api.Controllers
         public async Task<IActionResult> Create([FromForm] ProductCreateCommand command)
         {
             var response = await mediator.Send(command);
-            return StatusCode(response.StatusCode, response);
-            //return StatusCode(202, command);
+            //return StatusCode(response.StatusCode, response);
+            return StatusCode(202, command);
 
         }
         [HttpGet]

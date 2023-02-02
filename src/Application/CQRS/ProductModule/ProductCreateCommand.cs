@@ -16,11 +16,10 @@ namespace Application.CQRS.ProductModule
 		public int StockKeepingUnit { get; set; }
         public decimal? Price { get; set; }
         public int CategoryId { get; set; }
-
         public ICollection<IFormFile>? Images { get; set; }
 		public int GenderId { get; set; }
-		public ICollection<int> MaterialIds { get; set; } = null!;
-		public ICollection<int> ColorIds { get; set; } = null!;
+		public int[]? MaterialIds { get; set; } 
+		public int[]? ColorIds { get; set; } 
 
         public class ProductCreateCommandHandler : IRequestHandler<ProductCreateCommand, Response<Product>>
         {

@@ -42,7 +42,7 @@ namespace Api.Controllers
         public async Task<IActionResult> Delete([FromRoute] ProductDeleteCommand command)
         {
             var response = await mediator.Send(command);
-            return StatusCode(response.StatusCode,response)
+            return StatusCode(response.StatusCode, response);
         }
 
 

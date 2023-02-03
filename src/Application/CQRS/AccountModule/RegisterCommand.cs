@@ -63,11 +63,14 @@ namespace Application.CQRS.AccountModule
                     }   
 
                 }
-                //var host = accessor.HttpContext.Request.Scheme;
-                var token = await userManager.GenerateEmailConfirmationTokenAsync(user);
-                var url = $"//localhost:7065/email-confirm?token={token}&email={user.Email}";
+                Random rnd = new Random();
+                var confirmCode = rnd.Next(1000, 9999);
 
-                await emailService.SendEmailAsync(request.Email, "Resgistration", $"Qeydiyyati tamamlamaq üçün <a href='{url}'>buraya</a> keçid edin");
+                //var host = accessor.HttpContext.Request.Scheme;
+                //var token = await userManager.GenerateEmailConfirmationTokenAsync(user);
+                //var url = $"//localhost:7065/email-confirm?token={token}&email={user.Email}";
+
+                await emailService.SendEmailAsync(request.Email, "Resgistration", $"Confirm code {confirmCode}");
                 response.StatusCode = StatusCodes.Status201Created;
                 response.Message = "Emailinizə təsdiq mesajı göndərildi.";
                 return response;

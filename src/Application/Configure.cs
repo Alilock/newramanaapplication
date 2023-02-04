@@ -25,8 +25,9 @@ namespace Application
 
             });
             services.AddIdentity<AppUser, AppRole>()
-                .AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders(); 
+                .AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
 
+          
             services.AddAuthentication(opt =>
             {
                 opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -36,17 +37,30 @@ namespace Application
             {
                 opt.TokenValidationParameters = new TokenValidationParameters()
                 {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
                     ValidIssuer = configuration["JWT:issuer"],
                     ValidAudience = configuration["JWT:audience"],
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JWT:securityKey"])),
-                    ClockSkew = TimeSpan.Zero   
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JWT:key"])),
+                    ClockSkew = TimeSpan.Zero,
+                    LifetimeValidator = (notBefore, expires, securityToken, validationParameters) =>
+                    {
+                        return expires >= DateTime.UtcNow;
+                    }
+
                 };
             });
-            
             services.Configure<EmailServiceOptions>(config =>
             {
                 configuration.GetSection("emailAccount").Bind(config);
             });
+            services.Configure<TokenServiceOptions>(cfg =>
+            {
+                configuration.GetSection("jwt").Bind(cfg);
+            });
+            services.AddSingleton<ITokenService, TokenService>();
             services.AddSingleton<IEmailService, EmailService>();
 
         }

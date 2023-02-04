@@ -1,7 +1,13 @@
-﻿using Application.CQRS.AccountModule;
+﻿using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
+using Application.AppCode.Services;
+using Application.CQRS.AccountModule;
+using Domain.Entities.Membership;
 using MediatR;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics.CodeAnalysis;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Api.Controllers
 {
@@ -10,9 +16,11 @@ namespace Api.Controllers
     public class AccountController : ControllerBase
     {
         private readonly IMediator mediator;
-        public AccountController(IMediator mediator)
+        private readonly ITokenService tokenService;
+        public AccountController(IMediator mediator,ITokenService tokenService)
         {
             this.mediator = mediator;
+            this.tokenService = tokenService;
         }
 
         [HttpPost]
@@ -31,5 +39,24 @@ namespace Api.Controllers
             var response = await mediator.Send(command);
             return StatusCode(response.StatusCode, response);
         }
+        [HttpPost]
+        [Route("login")]
+        public async Task<IActionResult> Login([FromBody] LoginCommand command)
+        {
+            var user = await mediator.Send(command);
+            if(user is null)
+            {
+                return Unauthorized();
+            }
+            var token = tokenService.BuildToken(user);
+
+
+            return Ok(new
+            {
+                error = false,
+                accessToken = token
+            }) ;
+        }
+        
     }
 }

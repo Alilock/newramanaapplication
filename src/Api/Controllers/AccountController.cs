@@ -53,9 +53,10 @@ namespace Api.Controllers
 
             return Ok(new
             {
+                user = user,
                 error = false,
                 accessToken = token
-            }) ;
+            }); 
         }
         
     }

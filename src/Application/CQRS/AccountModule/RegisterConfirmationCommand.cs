@@ -42,7 +42,6 @@ namespace Application.CQRS.AccountModule
                     return new ResponseUser() { Message = "Tesdiq kodu duzgun deil", StatusCode = 403 };
                 }
 
-
             }
         }
     }

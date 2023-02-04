@@ -58,6 +58,5 @@ namespace Api.Controllers
                 accessToken = token
             }); 
         }
-        
     }
 }

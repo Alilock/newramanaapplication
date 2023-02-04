@@ -35,6 +35,7 @@ namespace Application.CQRS.AccountModule
                 if (user.ConfirmCode == request.ConfirmCode)
                 {
                     user.EmailConfirmed = true;
+                    await userManager.UpdateAsync(user);
                     return new ResponseUser() { Message = "Emailiniz tesdiqlendi", StatusCode = 200 };
 
                 }

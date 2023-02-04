@@ -14,7 +14,7 @@ namespace Application.CQRS.AccountModule
         public string Surname { get; set; }= null!;
         public string Email { get; set; } = null!;
         public string Password { get; set; } = null!;
-            
+        public string? PhoneNumber { get; set; }
         public class RegisterCommandHandler : IRequestHandler<RegisterCommand, ResponseUser>
         {
             private readonly UserManager<AppUser> userManager;
@@ -34,13 +34,13 @@ namespace Application.CQRS.AccountModule
                     response.Message = "Bu email ilə artıq qeydiyyatdan keçilib";
                     return response;
                 }
-
                 user = new AppUser
                 {
                     Email = request.Email,
                     Name = request.Name,
                     SurName = request.Surname,
-                    UserName= request.Surname
+                    UserName = request.Surname,
+                    PhoneNumber = request.PhoneNumber
                 };
 
                   var countOfUserName = await userManager.Users.CountAsync(u => u.UserName.StartsWith(user.UserName), cancellationToken);

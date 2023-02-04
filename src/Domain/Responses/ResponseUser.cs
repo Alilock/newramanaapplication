@@ -11,6 +11,6 @@ namespace Domain.Responses
     {
         public int StatusCode { get; set; } 
         public string Message { get; set; } = null!;
-        public string? Token { get; set; }
+        public int UserId { get; set; } 
     }
 }

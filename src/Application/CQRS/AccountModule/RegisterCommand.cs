@@ -14,9 +14,7 @@ namespace Application.CQRS.AccountModule
         public string Surname { get; set; }= null!;
         public string Email { get; set; } = null!;
         public string Password { get; set; } = null!;
-        public string ConfirmPassword { get; set; } = null!;
-
-
+            
         public class RegisterCommandHandler : IRequestHandler<RegisterCommand, ResponseUser>
         {
             private readonly UserManager<AppUser> userManager;
@@ -51,6 +49,9 @@ namespace Application.CQRS.AccountModule
                 {
                     user.UserName = $"{request.Surname}.{countOfUserName + 1}";
                 }
+                Random rnd = new Random();
+                var confirmCode = rnd.Next(1000, 9999);
+                user.ConfirmCode = confirmCode;
                 var result = await userManager.CreateAsync(user, request.Password);
 
                 if (!result.Succeeded)
@@ -63,16 +64,11 @@ namespace Application.CQRS.AccountModule
                     }   
 
                 }
-                Random rnd = new Random();
-                var confirmCode = rnd.Next(1000, 9999);
-
-                //var host = accessor.HttpContext.Request.Scheme;
-                //var token = await userManager.GenerateEmailConfirmationTokenAsync(user);
-                //var url = $"//localhost:7065/email-confirm?token={token}&email={user.Email}";
-
                 await emailService.SendEmailAsync(request.Email, "Resgistration", $"Confirm code {confirmCode}");
                 response.StatusCode = StatusCodes.Status201Created;
                 response.Message = "Emailinizə təsdiq mesajı göndərildi.";
+                response.UserId = user.Id;
+
                 return response;
             }
         }

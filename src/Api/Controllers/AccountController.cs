@@ -16,19 +16,17 @@ namespace Api.Controllers
         }
 
         [HttpPost]
-        //[Route("/register")]
+        [Route("register")]
 
-        public async Task<IActionResult> Register(RegisterCommand command)
+        public async Task<IActionResult> Register([FromBody]RegisterCommand command)
         {
-
             var respone = await mediator.Send(command);
             return StatusCode(respone.StatusCode, respone);
         }
-        [Route("/email-confirm")]
 
-        [HttpGet]
-
-        public  async Task<IActionResult> EmailConfirm(RegisterConfirmationCommand command)
+        [HttpPost]
+        [Route("emailconfirm")]
+        public  async Task<IActionResult> EmailConfirm([FromBody]RegisterConfirmationCommand command)
         {
             var response = await mediator.Send(command);
             return StatusCode(response.StatusCode, response);

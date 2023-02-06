@@ -14,7 +14,7 @@ namespace Application.CQRS.CategoryModule
 
         public string Name { get; set; } = null!;
         public IFormFile Image { get; set; } = null!;
-        public int? ParentId { get; set; }
+        public int ParentId { get; set; }
         public class CategoryCreateCommandHandler : IRequestHandler<CategoryCreateCommand, Response<Category>>
         {
             private readonly AppDbContext db;
@@ -32,7 +32,7 @@ namespace Application.CQRS.CategoryModule
                 {
                     Name = request.Name,
                 };
-                if (request.ParentId!=null)
+                if (request.ParentId!=0)
                 {
                     category.ParentId = request.ParentId;
                 }

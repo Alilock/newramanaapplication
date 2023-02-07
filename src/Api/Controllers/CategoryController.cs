@@ -37,6 +37,15 @@ namespace Api.Controllers
             var response = await mediator.Send(query);
             return StatusCode(response.StatusCode, response);
         }
+        [HttpGet]
+        [Route("categorytree")]
+        public async Task<IActionResult> GetTreeCategory([FromRoute]CategoryTreeQuery query)
+        {
+            var response = await mediator.Send(query);
+
+            return StatusCode(response.StatusCode, response);
+        }
+
     }
 }
 

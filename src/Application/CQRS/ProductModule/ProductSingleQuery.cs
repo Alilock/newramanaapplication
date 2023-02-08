@@ -22,7 +22,7 @@ namespace Application.CQRS.ProductModule
 
             public async Task<Response<Product>> Handle(ProductSingleQuery request, CancellationToken cancellationToken)
             {
-                var data = await db.Products.Where(g => g.Id == request.Id).FirstOrDefaultAsync(cancellationToken);
+                var data = await db.Products.Where(g => g.Id == request.Id).Include(p=>p.Colors).Include(p=>p.Materials).Include(p=>p.Images).FirstOrDefaultAsync(cancellationToken);
                 var response = new Response<Product>();
                 if (data == null)
                 {

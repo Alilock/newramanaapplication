@@ -19,7 +19,7 @@ namespace Application.CQRS.ProductModule
 
             public async Task<Response<ICollection<Product>>> Handle(ProductAllQuery request, CancellationToken cancellationToken)
             {
-                var data = await db.Products.Where(g=>g.DeletedDate==null).Include(p=>p.Images).Include(p=>p.Colors).Include(p=>p.Materials).ToListAsync(cancellationToken);
+                var data = await db.Products.Where(g=>g.DeletedDate==null).Include(p=>p.Images).Include(p=>p.Colors).Include(p=>p.Materials).ThenInclude(m=>m.Material).ToListAsync(cancellationToken);
                 var response = new Response<ICollection<Product>>();
 
                 if (data == null)

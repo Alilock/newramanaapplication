@@ -8,5 +8,6 @@ namespace Domain.Entities.Membership
         public string Name { get; set; } = null!;
         public string SurName { get; set; } = null!;
         public int ConfirmCode { get; set; }
+        public ICollection<Order>? Orders { get; set; }
     }
 }

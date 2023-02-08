@@ -13,7 +13,9 @@ namespace Application.DbContext
        public AppDbContext(DbContextOptions<AppDbContext> opt) : base(opt) { }
        public DbSet<Category> Categories =>Set<Category>();
        public DbSet<Product> Products =>Set<Product>();
-       public DbSet<Color> Colors => Set<Color>();
+       public DbSet<OrderItem> OrderItems =>Set<OrderItem>();
+       public DbSet<Order> Orders =>Set<Order>();
+        public DbSet<Color> Colors => Set<Color>();
        public DbSet<Material> Materials => Set<Material>();
        public DbSet<ProductImage> ProductImages => Set<ProductImage>();
        public DbSet<ProductColors> ProductColors => Set<ProductColors>();

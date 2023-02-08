@@ -44,6 +44,7 @@
     <Folder Include="CQRS\ColorAllQuery\" />
     <Folder Include="AppCode\Helpers\" />
     <Folder Include="AppCode\Helpers\Enums\" />
+    <Folder Include="CQRS\OrderModule\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -60,5 +61,6 @@
     <None Remove="CQRS\ColorAllQuery\" />
     <None Remove="AppCode\Helpers\" />
     <None Remove="AppCode\Helpers\Enums\" />
+    <None Remove="CQRS\OrderModule\" />
   </ItemGroup>
 </Project>

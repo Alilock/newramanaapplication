@@ -2,6 +2,7 @@
 using Application.CQRS.CategoryModule;
 using Application.CQRS.ProductModule;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers
@@ -25,6 +26,7 @@ namespace Api.Controllers
 
         }
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> Get([FromRoute] ProductAllQuery query)
         {
             var response = await mediator.Send(query);

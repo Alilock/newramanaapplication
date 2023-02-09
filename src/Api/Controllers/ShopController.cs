@@ -16,11 +16,15 @@ namespace Api.Controllers
             _mediator = mediator;
         }
         [HttpPost]
-        public async Task<ActionResult> Checkout([FromForm]CreateOrder command)
+        public async Task<IActionResult> Checkout([FromBody]CreateOrder command)
         {
             var response =  await _mediator.Send(command);
             return Ok(response);
         }
+
+        //[HttpGet]
+        //public async Task<IActionResult> GetAll ()
+
     }
 }
 

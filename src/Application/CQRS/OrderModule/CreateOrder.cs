@@ -10,7 +10,7 @@ namespace Application.CQRS.OrderModule
         public int UserId { get; set; }
         public string Address { get; set; } = String.Empty;
         public string PaymentMethod { get; set; } = String.Empty;
-        public List<OrderItem> OrderItems { get; set; }
+        public int[]? ProductIds { get; set; }
     }
 
     public class CreateOrderHandler : IRequestHandler<CreateOrder, Order>
@@ -27,11 +27,18 @@ namespace Application.CQRS.OrderModule
             var order = new Order
             {
                 UserId = request.UserId,
-                OrderItems = request.OrderItems,
                 Address = request.Address,
                 PaymentMethod = request.PaymentMethod
             };
 
+            if (request.ProductIds != null)
+            {
+                foreach (var id in request.ProductIds)
+                {
+                    order.OrderItems.Add(new OrderItem { OrderId = order.Id, ProductId = id });
+
+                }
+            }
             db.Orders.Add(order);
             await db.SaveChangesAsync(cancellationToken);
 

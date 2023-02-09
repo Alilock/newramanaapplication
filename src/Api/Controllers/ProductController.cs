@@ -26,7 +26,6 @@ namespace Api.Controllers
 
         }
         [HttpGet]
-        [Authorize]
         public async Task<IActionResult> Get([FromRoute] ProductAllQuery query)
         {
             var response = await mediator.Send(query);

@@ -1,6 +1,7 @@
 ﻿using System;
 using Application.CQRS.OrderModule;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers
@@ -16,6 +17,7 @@ namespace Api.Controllers
             _mediator = mediator;
         }
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> Checkout([FromBody]CreateOrder command)
         {
             var response =  await _mediator.Send(command);

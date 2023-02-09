@@ -2,6 +2,7 @@
 using Application.DbContext;
 using Domain.Entities;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace Application.CQRS.OrderModule
 {
@@ -28,22 +29,25 @@ namespace Application.CQRS.OrderModule
             {
                 UserId = request.UserId,
                 Address = request.Address,
-                PaymentMethod = request.PaymentMethod
+                PaymentMethod = request.PaymentMethod,
+                OrderItems = new List<OrderItem>()
             };
 
             if (request.ProductIds != null)
             {
                 foreach (var id in request.ProductIds)
                 {
-                    order.OrderItems.Add(new OrderItem { OrderId = order.Id, ProductId = id });
-
+                    order.OrderItems.Add(new OrderItem { Order = order, ProductId = id });
                 }
             }
+
             db.Orders.Add(order);
             await db.SaveChangesAsync(cancellationToken);
 
             return order;
         }
+
+
     }
 
 }

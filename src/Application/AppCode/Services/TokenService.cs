@@ -27,7 +27,7 @@ namespace Application.AppCode.Services
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(this.options.Key));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256Signature);
             var tokenDescriptor = new JwtSecurityToken(this.options.Issuer, this.options.Audience, claims,
-                expires: DateTime.UtcNow.AddMinutes(this.options.DurationMinutes), signingCredentials: credentials);
+                expires: DateTime.UtcNow.AddHours(1), signingCredentials: credentials);
 
             return new JwtSecurityTokenHandler().WriteToken(tokenDescriptor);
         }

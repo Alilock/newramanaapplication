@@ -48,7 +48,7 @@ namespace Application
                     
                     LifetimeValidator = (notBefore, expires, securityToken, validationParameters) =>
                     {
-                        return expires >= DateTime.UtcNow.AddHours(5);
+                        return expires >= DateTime.UtcNow;
                     }
 
                 };

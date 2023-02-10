@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using Application.CQRS.OrderModule;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -24,9 +24,30 @@ namespace Api.Controllers
             return Ok(response);
         }
 
-        //[HttpGet]
-        //public async Task<IActionResult> GetAll ()
+        [HttpGet]
+        [Route("orders")]
 
+        public async Task<IActionResult> Get ([FromRoute]GetOrdersQuery query)
+        {
+            var response = await _mediator.Send(query);
+            return Ok(response);
+        }
+        [HttpGet("orders/{Id}")]
+        public async Task<IActionResult> GetUserOrder([FromRoute] GetOrderByUser query)
+        {
+            var response = await _mediator.Send(query);
+                   if (response is null) return NotFound();
+            return Ok(response);
+        }
+
+        [HttpGet("orderdetail/{Id}")]
+        public async Task<IActionResult> GetOrderDetail([FromRoute] OrderSingleQuery query)
+        {
+            var response = await _mediator.Send(query);
+            if (response is null) return NotFound();
+
+            return Ok(response);
+        }
     }
 }
 

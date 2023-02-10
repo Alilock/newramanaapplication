@@ -18,7 +18,7 @@ namespace Application.CQRS.OrderModule
             }
             public async Task<ICollection<Order>> Handle(GetOrdersQuery request, CancellationToken cancellationToken)
             {
-                var data = await db.Orders.Where(o => o.DeletedDate == null).Include(o=>o.OrderItems).ThenInclude(o=>o.Product).ToListAsync();
+                var data = await db.Orders.Where(o => o.DeletedDate == null).Include(o=>o.OrderItems).ThenInclude(o=>o.Product).Include(p=>p.User).ToListAsync();
                 return data;
             }
         }

@@ -20,7 +20,14 @@ namespace Application.CQRS.OrderModule
 
             public async Task<Order?> Handle(OrderSingleQuery request, CancellationToken cancellationToken)
             {
-                var data = await db.Orders.Where(o => o.Id == request.Id).Include(o=>o.OrderItems).ThenInclude(o=>o.Product).ThenInclude(p=>p.Images).Include(o=>o.User).FirstOrDefaultAsync();
+                var data = await db.Orders.Where(o => o.Id == request.Id)
+                    .Include(o=>o.OrderItems)
+                    .ThenInclude(o=>o.Product)
+                    .ThenInclude(p=>p.Images)
+                    .Include(p=>p.OrderItems)
+                    .ThenInclude(p=>p.Product)
+                    .ThenInclude(p=>p.Materials)
+                   .Include(o=>o.User).FirstOrDefaultAsync();
                 return data;
             }
         }

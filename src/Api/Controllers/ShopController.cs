@@ -48,6 +48,12 @@ namespace Api.Controllers
 
             return Ok(response);
         }
+        [HttpPut("{Id}")]
+        public async Task<IActionResult> EditOrderStatus([FromRoute]StatusOrderCommand command)
+        {
+            var response = await _mediator.Send(command);
+            return Ok(response);
+        }
     }
 }
 

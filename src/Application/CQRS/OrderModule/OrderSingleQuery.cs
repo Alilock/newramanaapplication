@@ -8,7 +8,7 @@ namespace Application.CQRS.OrderModule
 {
     public class OrderSingleQuery : IRequest<Order>
     {
-        public int OrderId { get; set; }
+        public int Id { get; set; }
         public class OrderSingleQueryHandler : IRequestHandler<OrderSingleQuery, Order?>
         {
             private readonly AppDbContext db;
@@ -20,7 +20,7 @@ namespace Application.CQRS.OrderModule
 
             public async Task<Order?> Handle(OrderSingleQuery request, CancellationToken cancellationToken)
             {
-                var data = await db.Orders.Where(o => o.Id == request.OrderId).Include(o=>o.OrderItems).ThenInclude(o=>o.Product).FirstOrDefaultAsync();
+                var data = await db.Orders.Where(o => o.Id == request.Id).Include(o=>o.OrderItems).ThenInclude(o=>o.Product).FirstOrDefaultAsync();
                 return data;
             }
         }

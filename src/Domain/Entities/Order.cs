@@ -10,6 +10,7 @@ namespace Domain.Entities
 		public ICollection<OrderItem> OrderItems { get; set; }
 		public string? Address { get; set; }
 		public string? PaymentMethod { get; set; }
+		public string? Status { get; set; } = "Pending";
 		public int UserId { get; set; }
 		public AppUser? User { get; set; }
 	}

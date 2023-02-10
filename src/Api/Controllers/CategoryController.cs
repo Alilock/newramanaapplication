@@ -21,8 +21,6 @@ namespace Api.Controllers
         {
             var response = await mediator.Send(command);
             return StatusCode(response.StatusCode, response);
-            //return StatusCode(202, command);
-
         }
         [HttpGet]
         public async Task<IActionResult> Get([FromRoute]CategoryAllQuery query)

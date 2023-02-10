@@ -26,7 +26,7 @@ namespace Application.CQRS.OrderModule
                     .ThenInclude(p=>p.Images)
                     .Include(p=>p.OrderItems)
                     .ThenInclude(p=>p.Product)
-                    .ThenInclude(p=>p.Materials)
+                    .ThenInclude(p=>p.Materials).ThenInclude(p=>p.Material)
                    .Include(o=>o.User).FirstOrDefaultAsync();
                 return data;
             }

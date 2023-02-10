@@ -45,9 +45,10 @@ namespace Application
                     ValidAudience = configuration["JWT:audience"],
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JWT:key"])),
                     ClockSkew = TimeSpan.Zero,
+                    
                     LifetimeValidator = (notBefore, expires, securityToken, validationParameters) =>
                     {
-                        return expires >= DateTime.UtcNow;
+                        return expires >= DateTime.UtcNow.AddHours(5);
                     }
 
                 };

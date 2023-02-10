@@ -22,7 +22,7 @@ namespace Application.CQRS.OrderModule
 
         public async Task<List<Order>> Handle(GetOrderByUser request, CancellationToken cancellationToken)
         {
-            var data = await db.Orders.Where(o => o.UserId == request.Id).Include(o=>o.OrderItems).ToListAsync();
+            var data = await db.Orders.Where(o => o.UserId == request.Id).Include(o=>o.OrderItems).ThenInclude(o=>o.Product).ToListAsync();
             return data;
         }
     }
